@@ -2,7 +2,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { ILogger } from '../../utils/logger';
 import { sqliteOptions } from './ormconfig';
 
-const typeOrmConfig: DataSourceOptions = sqliteOptions;
+const sqliteDataSource: DataSourceOptions = sqliteOptions;
 
 export class AppDataSource {
 	protected logger: ILogger;
@@ -15,7 +15,7 @@ export class AppDataSource {
 	async initDatasource(): Promise<DataSource> {
 		let dataSource: DataSource;
 		try {
-			dataSource = await new DataSource(typeOrmConfig).initialize();
+			dataSource = await new DataSource(sqliteDataSource).initialize();
 			this.logger.info('Connected to datasource');
 		} catch (error) {
 			this.logger.error('Failed to initialize data source', {}, error);
