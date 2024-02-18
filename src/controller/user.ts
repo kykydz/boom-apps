@@ -4,7 +4,7 @@ import { Request, Response, Router } from 'express';
 
 export class UserController {
 	protected userService: UserService;
-	protected router: Router;
+	public router: Router;
 
 	constructor(userService: UserService) {
 		this.userService = userService;
@@ -21,7 +21,7 @@ export class UserController {
 			birthday: req.body.birthday,
 			location: req.body.location,
 		});
-		return res.status(200).json(result);
+		return res.status(200).json(req.body);
 	}
 
 	async delete(req: Request, res: Response) {

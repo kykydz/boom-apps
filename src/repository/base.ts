@@ -26,6 +26,10 @@ export class BaseRepository<T extends Record<string, any>>
 		this.logger = logger;
 	}
 
+	async getAll(): Promise<T[]> {
+		return await this.repository.find({});
+	}
+
 	async save(data: DeepPartial<T>): Promise<T> {
 		try {
 			const result = await this.repository.save(data);

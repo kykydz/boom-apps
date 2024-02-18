@@ -15,7 +15,7 @@ export const requestLogger = async (
 	logger.info('Incoming request', {
 		content: {
 			path: req.path,
-			headers: req.headers,
+			method: req.method,
 			content: req.body,
 		},
 		requestUUID: currentReqUUID,
@@ -30,6 +30,16 @@ export const requestLogger = async (
 		});
 
 		return originalJsonMethod.call(res, responseData);
+	};
+
+	const originalSendMethod = res.send;
+	res.send = (responseData) => {
+		logger.info('Response request UUID: ', {
+			content: responseData,
+			requestUUID: currentReqUUID,
+		});
+
+		return originalSendMethod.call(res, responseData);
 	};
 
 	next();

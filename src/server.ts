@@ -1,14 +1,11 @@
-import express from 'express';
-
 import { createApp } from './app';
 import { SERVER_PORT, ENV } from './config/environment';
 import { Logger } from '../src/utils/logger';
 
 (async () => {
-	const app = express();
 	const logger = new Logger(ENV);
 
-	await createApp(app);
+	const app = await createApp();
 
 	const server = app.listen(SERVER_PORT);
 
