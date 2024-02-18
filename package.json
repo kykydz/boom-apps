@@ -16,7 +16,7 @@
 	"main": "index.js",
 	"scripts": {
 		"migration": "typeorm migration:create \"./src/migration/\" -- -n",
-		"start": "ts-node src/index.ts",
+		"migration2": "typeorm migration:create \"./src/migration/\" -- -n",
 		"typeorm": "typeorm-ts-node-commonjs"
 	},
 	"author": "",
